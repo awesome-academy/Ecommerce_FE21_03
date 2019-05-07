@@ -43,14 +43,16 @@ class CarouselComponent extends Component {
   }
 
   next() {
+    const { activeIndex } = this.state;
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
 
   previous() {
+    const { activeIndex } = this.state;
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
 
