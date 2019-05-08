@@ -34,5 +34,6 @@ This project uses the following open source packages:
 - [i18next](https://react.i18next.com/)
 - [Lodash](https://lodash.com/)
 - [React](https://reactjs.org/)
+- [react-loadable](https://github.com/jamiebuilds/react-loadable)
 - [Reactstrap](https://reactstrap.github.io/)
 - [Redux](https://redux.js.org/)

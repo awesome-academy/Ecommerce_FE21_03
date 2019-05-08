@@ -5,4 +5,4 @@ Please explain the changes you made here.
 - [ ] Write checklist
 
 ---
-### [Redmine URL](https://edu-redmine.sun-asterisk.vn/issues/11518)
+### https://edu-redmine.sun-asterisk.vn/issues/11518
