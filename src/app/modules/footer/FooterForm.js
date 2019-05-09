@@ -2,7 +2,7 @@ import React from 'react';
 
 function FooterForm() {
     return (
-        <div>
+        <div className="footer__form">
             <form>
                 <input type="email" placeholder="Enter Your Email" aria-label="email" />
                 <button className="submit" type="submit">Gửi</button>

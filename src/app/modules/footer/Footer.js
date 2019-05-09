@@ -28,8 +28,8 @@ function Footer() {
   ]
 
 
-  var items = footerItems.map((item) => {
-    return <FooterItems heading={item.heading} items={item.items} path={item.path} />
+  var items = footerItems.map((item,index) => {
+    return <FooterItems key={index} heading={item.heading} items={item.items} path={item.path} />
   })
   return (
     <>

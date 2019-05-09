@@ -2,7 +2,7 @@ import React from 'react'
 
 function FooterItems({heading,  items, path}) {
     var menuItems = items.map((item)=>{
-        return <li className="footer__link"><a href={path}>{item.name}</a></li>
+        return <li key={item.id} className="footer__link"><a href={path}>{item.name}</a></li>
     })
     return (
             <div className="col-sm-12 col-md-2">
