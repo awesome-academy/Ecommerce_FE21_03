@@ -33,8 +33,8 @@ function HeaderNavbar() {
             <NavItem>
               <NavLink className="nav-link-menu" tag={RRNavLink} to="/" title="Trang chủ">Trang chủ</NavLink>
             </NavItem>
-            <NavbarDropdown title="Rượu Đỏ" to="/" />
-            <NavbarDropdown title="Rượu Trắng" to="/" />
+            <NavbarDropdown title="Rượu Đỏ" />
+            <NavbarDropdown title="Rượu Trắng" />
             <NavItem>
               <NavLink className="nav-link-menu" tag={RRNavLink} to="/introduction" title="Thông tin">Thông tin</NavLink>
             </NavItem>

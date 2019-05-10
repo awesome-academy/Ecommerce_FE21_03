@@ -23,6 +23,11 @@ const Contact = Loadable({
   loading: () => <Loading />,
 });
 
+const Products = Loadable({
+  loader: () => import("./modules/products/Products"),
+  loading: () => <Loading />,
+});
+
 export default [
   {
     path: "/",
@@ -39,5 +44,9 @@ export default [
   {
     path: "/contact",
     component: Contact
+  },
+  {
+    path: "/products",
+    component: Products
   }
 ]
