@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderTitleMedium } from '../../../shared/header-title/HeaderTitle';
+import { HeaderTitleMedium } from '../../../shared/header-title';
 import AsideCategoryListUl from './ListUl';
 
 const AsideCategory = ({ category }) => {
@@ -12,7 +12,7 @@ const AsideCategory = ({ category }) => {
 
   return (
     <section className="aside-menu">
-      <HeaderTitleMedium title="Danh mục sản phẩm" path="/" />
+      <HeaderTitleMedium title="Danh mục sản phẩm" />
       {renderListUl(category)}
     </section>
   )
