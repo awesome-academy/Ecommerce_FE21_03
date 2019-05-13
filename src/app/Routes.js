@@ -38,6 +38,11 @@ const Login = Loadable({
   loading: () => <Loading />,
 });
 
+const Register = Loadable({
+  loader: () => import("./modules/register"),
+  loading: () => <Loading />,
+});
+
 export default [
   {
     path: "/",
@@ -66,5 +71,9 @@ export default [
   {
     path: "/login",
     component: Login
+  },
+  {
+    path: "/register",
+    component: Register
   }
 ]
