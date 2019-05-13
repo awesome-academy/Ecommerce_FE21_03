@@ -6,7 +6,8 @@ import { faHeart, faSignal } from '@fortawesome/free-solid-svg-icons';
 import ProductsItemTitle from '../../shared/product/Title';
 import ProductsItemPrice from '../../shared/product/Price';
 
-const ProductsItemList = () => {
+const ProductsItemList = ({ product }) => {
+  const { name, id, price, description, image_url } = product;
   return (
     <Col md={12}>
       <div className="products-item products-item--list">
@@ -14,16 +15,15 @@ const ProductsItemList = () => {
           <Col md={4}>
             <Link className="products-item__img" to="/">
               <span />
-              <img src="../assets/images/products/1.jpg" alt="Rượu vang Đà Lạt" />
+              <img src={image_url} alt={name} />
             </Link>
           </Col>
           <Col md={8}>
             <div className="products-item__info">
-              <ProductsItemTitle title="Rượu vang Đà Lạt" path="/" />
-              <ProductsItemPrice newPrice={320000} oldPrice={450000} />
+              <ProductsItemTitle title={name} path={`/products/${id}`} />
+              <ProductsItemPrice newPrice={price.new} oldPrice={price.old} />
               <div className="products-item__desc">
-                Một hợp chất có trong rượu vang được gọi là resveratro có khả năng làm tăng tối đa tuổi thọ. Resveratro còn có khả năng ngăn chặn mật độ
-                ôxy hoá của protein béo.
+                {description}
               </div>
               <div className="products-item__view">
                 <a className="btn btn-primary btn-wine" href="/">Add to card</a>
