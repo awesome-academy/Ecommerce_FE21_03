@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderTitleMedium } from '../header-title/HeaderTitle';
+import { HeaderTitleMedium } from '../header-title';
 
 const AsideTags = ({ tags }) => {
   const renderTags = tags.map(tag => {

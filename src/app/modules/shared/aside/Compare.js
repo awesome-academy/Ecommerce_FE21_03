@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderTitleMedium } from '../header-title/HeaderTitle';
+import { HeaderTitleMedium } from '../header-title';
 
 const AsideCompare = () => {
   return (

@@ -3,8 +3,8 @@ import { Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faSignal } from '@fortawesome/free-solid-svg-icons';
-import ProductsItemTitle from './Title';
-import ProductsItemPrice from './Price';
+import ProductsItemTitle from '../../shared/product/Title';
+import ProductsItemPrice from '../../shared/product/Price';
 
 const ProductsItemList = () => {
   return (
