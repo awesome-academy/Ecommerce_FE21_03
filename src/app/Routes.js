@@ -28,6 +28,11 @@ const Products = Loadable({
   loading: () => <Loading />,
 });
 
+const ProductsDetail = Loadable({
+  loader: () => import("./modules/products/detail"),
+  loading: () => <Loading />,
+});
+
 export default [
   {
     path: "/",
@@ -48,5 +53,9 @@ export default [
   {
     path: "/products",
     component: Products
+  },
+  {
+    path: "/products/:id",
+    component: ProductsDetail
   }
 ]

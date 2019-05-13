@@ -24,7 +24,7 @@ function HeaderNavbar() {
     <Navbar className="navbar navbar-expand-lg navbar-dark bg-dark" expand="md">
       <Container>
         <NavbarBrand tag={RRNavLink} to="/">
-          <img src={`${process.env.PUBLIC_URL}assets/images/logo.png`} alt="NavbarBrand" />
+          <img src={`${process.env.PUBLIC_URL}/assets/images/logo.png`} alt="NavbarBrand" />
         </NavbarBrand>
         <NavbarCartMobile />
         <NavbarToggler onClick={toggle} />

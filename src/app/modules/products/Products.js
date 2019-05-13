@@ -32,9 +32,8 @@ const Products = () => {
         setProducts(data);
       })
     },
-    [products]
+    []
   );
-
   const renderProductsItemList = (products) => {
     let html = null;
     if (products.length > 0) {
