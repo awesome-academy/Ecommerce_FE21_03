@@ -2,20 +2,21 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const ProductsDetailChooseQuantity = () => {
+const ProductsDetailChooseQuantity = ({ decrement, increment, value, onChange }) => {
+
   return (
     <div className="choose-quantity">
       <p className="title-label">Số lượng</p>
       <div className="d-flex">
         <div className="input-group">
           <div className="input-group-prepend">
-            <button className="btn btn-sm" id="minus-btn">
+            <button onClick={decrement} className="btn btn-sm" id="minus-btn">
               <FontAwesomeIcon icon={faMinus} />
             </button>
           </div>
-          <input className="form-control form-control-sm" id="qty_input" type="number" defaultValue={1} min={1} />
+          <input value={value} onChange={e => onChange(+e.target.value)} className="form-control form-control-sm" id="qty_input" type="number" min={1} />
           <div className="input-group-prepend">
-            <button className="btn btn-sm" id="plus-btn">
+            <button onClick={increment} className="btn btn-sm" id="plus-btn">
               <FontAwesomeIcon icon={faPlus} />
             </button>
           </div>
