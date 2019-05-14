@@ -9,7 +9,7 @@ function TopMenuList() {
       <li><a href="/">Danh sách ưa thích</a></li>
       <li><a href="/">Giỏ hàng (1)</a></li>
       <li><Link to="/login">Đăng nhập</Link></li>
-      <li><a href="/">Đăng ký</a></li>
+      <li><Link to="/register">Đăng ký</Link></li>
     </ul>
   );
 }

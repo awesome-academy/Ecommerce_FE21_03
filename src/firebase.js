@@ -12,3 +12,4 @@ const firebaseConfig = {
 
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const productsRef = firebase.database().ref("products");
+export const usersRef = firebase.database().ref("users");

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { Col } from 'reactstrap';
 import { firebaseApp } from '../../../firebase';
 import { ButtonSubmit } from '../shared/button';
+import { Label } from '../shared/form/Label';
 
 const FormLogin = () => {
   const [email, setEmail] = useState('');
@@ -37,13 +38,13 @@ const FormLogin = () => {
       <h4>Khách hàng đăng nhập</h4>
       <p className="mb-5">Nếu bạn có một tài khoản, xin vui lòng đăng nhập.</p>
       <div className="form-group row">
-        <label className="col-sm-2 col-form-label">Email<span className="text-danger">*</span></label>
+        <Label type="required">Email</Label>
         <Col sm={10}>
           <input value={email} onChange={e => setEmail(e.target.value)} className="form-control" type="text" placeholder="Email" />
         </Col>
       </div>
       <div className="form-group row">
-        <label className="col-sm-2 col-form-label">Password<span className="text-danger">*</span></label>
+        <Label type="required">Password</Label>
         <Col sm={10}>
           <input value={password} onChange={e => setPassword(e.target.value)} className="form-control" type="password" placeholder="Password" />
         </Col>
