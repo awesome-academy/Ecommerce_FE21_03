@@ -1,10 +1,17 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { Container, Row, Col } from 'reactstrap';
 import { HeaderTitleMedium } from '../shared/header-title';
 import { ButtonHeaderForm } from '../shared/button';
 import FromLogin from './FormLogin';
 
-const Login = () => {
+const Login = ({ user, history }) => {
+  if (user.isLogin) {
+    history.push('/');
+  }
+
   return (
     <Container>
       <nav aria-label="breadcrumb">
@@ -28,4 +35,11 @@ const Login = () => {
   )
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return { user: state.usersReducers.user }
+}
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(Login);

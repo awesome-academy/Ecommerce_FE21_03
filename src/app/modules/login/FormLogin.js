@@ -3,15 +3,14 @@
  * #task/12145
  * https://edu-redmine.sun-asterisk.vn/issues/12145
  */
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Col } from 'reactstrap';
 import { firebaseApp } from '../../../firebase';
 import { ButtonSubmit } from '../shared/button';
 import { Label } from '../shared/form/Label';
 
-const FormLogin = () => {
+const FormLogin = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,18 +18,17 @@ const FormLogin = () => {
     e.preventDefault();
     firebaseApp.auth()
       .signInWithEmailAndPassword(email, password)
-      .then(data => {
+      .then(() => {
         /**
          * TODO: Create Notify Login success UI #task/12145
          */
-        console.log(data);
+        history.push('/');
       })
-      .catch(e => {
+      .catch(
         /**
          * TODO: Create Notify Catch error UI #task/12145
          */
-        console.log(e);
-      })
+      )
   }
 
   return (
@@ -59,4 +57,4 @@ const FormLogin = () => {
   )
 }
 
-export default FormLogin;
+export default withRouter(FormLogin);
