@@ -26,6 +26,23 @@ let productId = null;
 
 const ProductsDetail = ({ match }) => {
   const [product, setProduct] = useState([]);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleChange = newValue => {
+    setQuantity(newValue);
+  }
+
+  const handleQuantityIncrement = () => {
+    return setQuantity(prevQuantity => prevQuantity + 1);
+  }
+
+  const handleQuantityDecrement = () => {
+    if (quantity === 1) {
+      return setQuantity(1);
+    }
+    return setQuantity(prevQuantity => prevQuantity - 1);
+  }
+
   productId = match.params.id;
 
   // Get products with id from firebase
@@ -71,7 +88,11 @@ const ProductsDetail = ({ match }) => {
             <ProductsDetailChooseColor />
             <div className="clearfix" />
             <ProductsDetailChooseSize />
-            <ProductsDetailChooseQuantity />
+            <ProductsDetailChooseQuantity
+              value={quantity}
+              decrement={handleQuantityDecrement}
+              increment={handleQuantityIncrement}
+              onChange={handleChange} />
             <ProductsDetailExpress />
             <ProductsDetailDesc desc={product.description} />
           </ProductsDetailInfo>
