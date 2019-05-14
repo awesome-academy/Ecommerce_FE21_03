@@ -1,13 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { actionBuyProduct } from '../../carts/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faSignal } from '@fortawesome/free-solid-svg-icons';
 import ProductsItemTitle from '../../shared/product/Title';
 import ProductsItemPrice from '../../shared/product/Price';
 
-const ProductsItemList = ({ product }) => {
+const ProductsItemList = ({ product, buyProduct }) => {
   const { name, id, price, description, image_url } = product;
+
+  const addToCart = (product) => {
+    const quantity = 1;
+    buyProduct(product, quantity);
+  }
+
   return (
     <Col md={12}>
       <div className="products-item products-item--list">
@@ -26,7 +34,7 @@ const ProductsItemList = ({ product }) => {
                 {description}
               </div>
               <div className="products-item__view">
-                <a className="btn btn-primary btn-wine" href="/">Add to card</a>
+                <button onClick={() => addToCart(product)} className="btn btn-primary btn-wine" type="button">Add to card</button>
                 <a href="/">
                   <FontAwesomeIcon icon={faHeart} /> &nbsp; Yêu thích
                 </a>
@@ -42,4 +50,12 @@ const ProductsItemList = ({ product }) => {
   );
 }
 
-export default ProductsItemList;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    buyProduct: (product, quantity) => {
+      dispatch(actionBuyProduct(product, quantity))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductsItemList);

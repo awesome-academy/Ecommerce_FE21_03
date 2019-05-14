@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import getAPI from '../../../utils/services/getAPI';
 import isEmpty from '../../../utils/validation/isEmpty';
 import AsideCategory from './category/Category';
@@ -19,7 +18,7 @@ const ProductsAside = () => {
         }
       });
     },
-    [tags]
+    []
   );
 
   useEffect(
@@ -30,7 +29,7 @@ const ProductsAside = () => {
         }
       });
     },
-    [category]
+    []
   );
 
   return (
@@ -43,11 +42,4 @@ const ProductsAside = () => {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    tags: state.productsReducers.tags,
-    category: state.productsReducers.category
-  }
-}
-
-export default connect(mapStateToProps, null)(ProductsAside);
+export default ProductsAside;

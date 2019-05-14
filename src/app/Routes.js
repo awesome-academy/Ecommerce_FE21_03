@@ -18,6 +18,11 @@ const Introduction = Loadable({
   loading: () => <Loading />,
 });
 
+const Cart = Loadable({
+  loader: () => import("./modules/carts"),
+  loading: () => <Loading />,
+});
+
 const Contact = Loadable({
   loader: () => import("./modules/contact/Contact"),
   loading: () => <Loading />,
@@ -55,6 +60,10 @@ export default [
   {
     path: "/introduction",
     component: Introduction
+  },
+  {
+    path: "/cart",
+    component: Cart
   },
   {
     path: "/contact",
