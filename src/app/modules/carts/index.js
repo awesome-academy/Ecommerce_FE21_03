@@ -5,16 +5,17 @@ import { sumBy } from 'lodash';
 import { HeaderTitleMedium } from '../shared/header-title';
 import CartItem from './components/Item';
 import CartFooter from './components/Footer';
+import { useTranslation } from 'react-i18next';
 
 const Cart = ({ carts }) => {
-
+  const { t } = useTranslation();
   const renderCartItem = (carts) => {
     if (carts.length > 0) {
       return carts.map((cart, index) => {
         return <CartItem key={index} cart={cart} />
       });
     }
-    return <tr><td colSpan={6}>Không có sản phẩm trong giỏ hàng!</td></tr>
+    return <tr><td colSpan={7}>{t('NO_PRODUCT_IN_CART')}</td></tr>
   }
 
   const renderCartFooter = (carts) => {
@@ -32,22 +33,22 @@ const Cart = ({ carts }) => {
     <div className="container">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><Link to="/">Trang chủ</Link></li>
-          <li className="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+          <li className="breadcrumb-item"><Link to="/">{t('HOMEPAGE')}</Link></li>
+          <li className="breadcrumb-item active" aria-current="page">{t('CART')}</li>
         </ol>
       </nav>
       <section>
-        <HeaderTitleMedium title="Giỏ Hàng" path="/cart" />
+        <HeaderTitleMedium title={t('CART')} path="/cart" />
         <table className="table table-cart">
           <thead>
             <tr>
-              <th scope="col">Ảnh</th>
-              <th scope="col">Tên sản phẩm</th>
-              <th scope="col">Kích cỡ</th>
-              <th scope="col">Giá</th>
-              <th scope="col">Số lượng</th>
-              <th scope="col">Tổng số</th>
-              <th scope="col">Xoá</th>
+              <th scope="col">{t('IMAGE')}</th>
+              <th scope="col">{t('PRODUCT_NAME')}</th>
+              <th scope="col">{t('PRODUCT_SIZE')}</th>
+              <th scope="col">{t('PRODUCT_PRICE')}</th>
+              <th scope="col">{t('PRODUCT_QUANTITY')}</th>
+              <th scope="col">{t('TOTAL')}</th>
+              <th scope="col">{t('DELETE')}</th>
             </tr>
           </thead>
           <tbody>
@@ -56,9 +57,9 @@ const Cart = ({ carts }) => {
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <Link className="btn btn-wine" to="/products">Tiếp tục mua hàng</Link>
-          <a className="btn btn-wine mx-3" href="/">Xóa</a>
-          <a className="btn btn-wine" href="/">Cập nhật</a></div>
+          <Link className="btn btn-wine" to="/products">{t('CONTINUE_BUYING')}</Link>
+          <a className="btn btn-wine mx-3" href="/">{t('DELETE')}</a>
+          <a className="btn btn-wine" href="/">{t('UPDATE')}</a></div>
       </section>
     </div>
   )

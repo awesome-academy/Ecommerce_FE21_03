@@ -9,7 +9,9 @@ import { firebaseApp, usersRef } from './firebase';
 import './i18n';
 import Main from './app/Main';
 import * as serviceWorker from './serviceWorker';
-import { actionLogin, actionLogout } from './app/modules/users/actions'
+import { actionLogin, actionLogout } from './app/modules/users/actions';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 firebaseApp.auth().onAuthStateChanged(user => {
   if (user) {
@@ -34,6 +36,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <I18nextProvider i18n={i18next}>
+        <ToastContainer />
         <Main />
       </I18nextProvider>
     </BrowserRouter>

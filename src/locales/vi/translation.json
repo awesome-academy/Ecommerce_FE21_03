@@ -1,5 +1,58 @@
 {
   "CHOOSE_LANGUAGE": "Chọn ngôn ngữ",
   "LANG_EN": "EN",
-  "LANG_VI": "VI"
+  "LANG_VI": "VI",
+  "WELCOME": "Chào, {{user}}",
+  "HOMEPAGE": "Trang chủ",
+  "INTRODUCTION": "Thông tin",
+  "CONTACT": "Liên hệ",
+  "BLOG": "Blog",
+  "FORGOT_PASSWORD": "Quên mật khẩu",
+  "LOGIN": "Đăng nhập",
+  "REGISTER": "Đăng ký",
+  "LOGOUT": "Đăng xuất",
+  "EMAIL": "Email",
+  "PASSWORD": "Mật khẩu",
+  "RE_PASSWORD": "Nhập lại mật khẩu",
+  "ADMINCP": "Admincp",
+  "CART": "Giỏ hàng",
+  "COMPARE": "So sánh",
+  "FAVORITE": "Yêu thích",
+  "FAVORITE_LIST": "Danh sách ưa thích",
+  "ORDER": "Đơn hàng",
+  "GO_BACK": "Quay lại",
+  "FORM": {
+    "REGISTER": {
+      "SUCCESS": "Đăng ký thành công"
+    },
+    "SUCCESS": "Đăng nhập thành công",
+    "LOGIN": {
+      "TITLE": "Khách hàng đăng nhập",
+      "SUB_TITLE": "Nếu bạn có một tài khoản, xin vui lòng đăng nhập."
+    },
+    "REGISTER_NEWS": "Đăng ký nhận bản tin"
+  },
+  "USER": {
+    "PERSONAL_INFORMATION": "Thông tin cá nhân",
+    "FIRST_NAME": "Tên",
+    "LAST_NAME": "Họ"
+  },
+  "NO_PRODUCT_IN_CART": "Không có sản phẩm trong giỏ hàng!",
+  "IMAGE": "Hình ảnh",
+  "PRODUCT_NAME": "Tên sản phẩm",
+  "PRODUCT_SIZE": "Kích cỡ",
+  "PRODUCT_PRICE": "Giá",
+  "PRODUCT_QUANTITY": "Số lượng",
+  "TOTAL": "Tổng Số",
+  "DELETE": "Xoá",
+  "UPDATE": "Cập nhật",
+  "EDIT": "Sửa",
+  "ADD": "Thêm",
+  "CONTINUE_BUYING": "Tiếp tục mua hàng",
+  "ALL": "Tất cả",
+  "ADD_TO_CART": "Thêm vào giỏ",
+  "NOTIFY": {
+    "CHOOSE_LANGUAGE_SUCCESS": "Chọn ngôn ngữ thành công",
+    "ADD_TO_CART_SUCCESS": "Đã thêm '{{ name }}' vào giỏ hàng"
+  }
 }

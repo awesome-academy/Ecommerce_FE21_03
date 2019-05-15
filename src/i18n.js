@@ -1,4 +1,5 @@
 import i18n from "i18next";
+import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from "react-i18next";
 
 import translationEN from './locales/en/translation.json';
@@ -14,11 +15,16 @@ const resources = {
 };
 
 i18n
+  .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
     lng: "vi",
-    keySeparator: false, // we do not use keys in form messages.welcome
+    caches: ['localStorage', 'cookie'],
+    keySeparator: '.', // messages.welcome
+    whitelist: ['en', 'vi'],
+    nonExplicitWhitelist: true,
+    load: 'languageOnly',
 
     interpolation: {
       escapeValue: false // react already safes from xss
