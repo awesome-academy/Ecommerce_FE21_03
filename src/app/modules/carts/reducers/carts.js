@@ -17,14 +17,26 @@ let getProductPosition = (cartItems, product) => {
 }
 
 const carts = (state = initState, action) => {
-  let { product, quantity } = action;
+  let { product, quantity, size } = action;
   switch (action.type) {
     case types.BUY_PRODUCT:
       let position = getProductPosition(state, product);
+      let price = product.price.new || product.price;
       if (position > -1) { //edit
         state[position].quantity += quantity;
+        state[position].size = size;
       } else {
-        state.push({ product, quantity })
+        state.push({
+          product: {
+            id: product.id,
+            name: product.name,
+            price,
+            image_url: product.image_url,
+            size: product.size
+          },
+          quantity,
+          size
+        });
       }
       LocalStorageUtils.setItem(LOCAL_STORAGE_KEY.CARTS, state);
       return [...state];

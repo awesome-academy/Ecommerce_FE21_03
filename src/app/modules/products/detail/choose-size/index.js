@@ -1,14 +1,16 @@
 import React from 'react';
-import { Input } from 'reactstrap';
+import Select from 'react-select';
 
-const ProductsDetailChooseSize = () => {
+const ProductsDetailChooseSize = ({ defaultValue, options, handler }) => {
   return (
     <div className="choose-size">
       <p className="title-label">Kích cỡ</p>
-      <Input type="select" name="select" id="exampleSelect" className="custom-select my-1 mr-sm-2">
-        <option>Loại nhỏ</option>
-        <option>Loại to</option>
-      </Input>
+      <Select
+        defaultValue={defaultValue}
+        onChange={handler}
+        options={options}
+        placeholder="Chọn kích cỡ"
+      />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const ProductsDetailChooseQuantity = ({ decrement, increment, value, onChange }) => {
+const ProductsDetailChooseQuantity = ({ decrement, increment, value, onChange, addToCart, product }) => {
 
   return (
     <div className="choose-quantity">
@@ -21,7 +21,7 @@ const ProductsDetailChooseQuantity = ({ decrement, increment, value, onChange })
             </button>
           </div>
         </div>
-        <button className="btn btn-primary btn-wine">Add to card</button>
+        <button onClick={() => addToCart(product)} className="btn btn-primary btn-wine">Add to card</button>
       </div>
     </div>
   )

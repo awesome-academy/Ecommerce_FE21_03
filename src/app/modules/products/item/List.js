@@ -9,11 +9,12 @@ import ProductsItemTitle from '../../shared/product/Title';
 import ProductsItemPrice from '../../shared/product/Price';
 
 const ProductsItemList = ({ product, buyProduct }) => {
-  const { name, id, price, description, image_url } = product;
+  const { name, id, price, description, image_url, size } = product;
 
   const addToCart = (product) => {
     const quantity = 1;
-    buyProduct(product, quantity);
+    const getDefaultFirstSize = size[0];
+    buyProduct(product, quantity, getDefaultFirstSize);
   }
 
   return (
@@ -52,8 +53,8 @@ const ProductsItemList = ({ product, buyProduct }) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    buyProduct: (product, quantity) => {
-      dispatch(actionBuyProduct(product, quantity))
+    buyProduct: (product, quantity, size) => {
+      dispatch(actionBuyProduct(product, quantity, size))
     }
   }
 }

@@ -1,10 +1,11 @@
 import * as types from '../constants/ActionType';
 
-export const actionBuyProduct = (product, quantity) => {
+export const actionBuyProduct = (product, quantity, size) => {
   return {
     type: types.BUY_PRODUCT,
     product,
-    quantity
+    quantity,
+    size
   }
 }
 
