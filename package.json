@@ -1,7 +1,14 @@
 {
   "name": "ecommerce-fe21-03",
+  "description": "The e-commerce project uses React Redux training at Sun Asterisk",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awesome-academy/Ecommerce_FE21_03.git"
+  },
+  "url": "https://sun-ecommerce.ineo.vn",
+  "homepage": "https://ineo.vn",
   "dependencies": {
     "@babel/core": "7.4.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -35,6 +42,7 @@
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-beta.5",
     "i18next": "^15.1.0",
+    "i18next-browser-languagedetector": "^3.0.1",
     "identity-obj-proxy": "3.0.0",
     "is-wsl": "^1.1.0",
     "jest": "24.7.1",
@@ -61,6 +69,7 @@
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.4.3",
+    "react-toastify": "^5.1.0",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "resolve": "1.10.0",

@@ -1,6 +1,6 @@
 import React from 'react';
 import Countdown from 'react-countdown-now';
-import { GET_PROMOTION_TIME } from '../types';
+import { GET_PROMOTION_TIME } from '../constants/ActionType';
 
 const ProductOutOfStock = () => <span>Sản phẩm đã hết hàng!</span>;
 

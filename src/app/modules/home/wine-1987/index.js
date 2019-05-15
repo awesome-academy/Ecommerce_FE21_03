@@ -1,5 +1,5 @@
 import React from 'react';
-import { LIMIT_IMAGE_WINE1987 } from '../types';
+import { LIMIT_IMAGE_WINE1987 } from '../constants/ActionType';
 import Wine1989Item from './Item';
 
 const imgWine1987 = [];
