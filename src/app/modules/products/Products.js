@@ -19,14 +19,15 @@ const Products = () => {
       productsRef.on('value', products => {
         let data = [];
         products.forEach(product => {
-          const { name, body, description, price, image_url } = product.val();
+          const { name, body, description, price, image_url, size } = product.val();
           data.push({
             id: product.key,
             name,
             description,
             body,
             price,
-            image_url
+            image_url,
+            size
           });
         });
         setProducts(data);

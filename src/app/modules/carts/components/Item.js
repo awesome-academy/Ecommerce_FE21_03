@@ -23,10 +23,11 @@ const CartItem = ({ cart, deleteProduct }) => {
           <img className="table-cart__img" src={image_url} alt={name} />
         </Link>
       </td>
-      <td>{name}</td>
-      <td className="table-cart__price">{price.new}<sup className="text-lowercase">đ</sup></td>
+      <td><Link to={`/products/${id}`}>{name}</Link></td>
+      <td>{cart.size.label}</td>
+      <td className="table-cart__price">{price.new || price}<sup className="text-lowercase">đ</sup></td>
       <td>{cart.quantity}</td>
-      <td className="table-cart__price">{countTotal(price.new, cart.quantity)}<sup className="text-lowercase">đ</sup></td>
+      <td className="table-cart__price">{countTotal(price.new || price, cart.quantity)}<sup className="text-lowercase">đ</sup></td>
       <td><button onClick={() => handleDelete(cart.product)} className="btn btn-link"><FontAwesomeIcon icon={faTrashAlt} /></button></td>
     </tr>
   )

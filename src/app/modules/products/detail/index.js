@@ -4,7 +4,9 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { actionBuyProduct } from '../../carts/actions';
 import { productsRef } from '../../../../firebase';
 import ProductsDetailLeft from './Left';
 import ProductsDetailBottom from './Bottom';
@@ -24,9 +26,14 @@ const ProductsDetailInfo = ({ children }) => <div className="product-detail__inf
 
 let productId = null;
 
-const ProductsDetail = ({ match }) => {
+const ProductsDetail = ({ match, buyProduct }) => {
   const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [sizeOptions, setSizeOptions] = useState([]);
+  const [selectedSize, setSelectedSize] = useState({ label: "Loại nhỏ", value: 'small' });
+  const handleChangeSize = (selectedOption) => {
+    setSelectedSize(selectedOption);
+  }
 
   const handleChange = newValue => {
     setQuantity(newValue);
@@ -43,13 +50,19 @@ const ProductsDetail = ({ match }) => {
     return setQuantity(prevQuantity => prevQuantity - 1);
   }
 
+  const addToCart = (product) => {
+    const newQuantity = quantity;
+    const newSize = selectedSize;
+    buyProduct(product, newQuantity, newSize);
+  }
+
   productId = match.params.id;
 
   // Get products with id from firebase
   useEffect(
     () => {
       productsRef.child(productId).once('value').then(snapshot => {
-        let { name, image_url, images, description, body, info, price } = snapshot.val();
+        let { name, image_url, images, description, body, info, price, size } = snapshot.val();
         let data = {
           id: snapshot.key,
           name,
@@ -58,9 +71,10 @@ const ProductsDetail = ({ match }) => {
           description,
           body,
           info,
-          price: price.new
+          price: price.new,
         }
         setProduct(data);
+        setSizeOptions(size);
       });
     },
     []
@@ -71,9 +85,9 @@ const ProductsDetail = ({ match }) => {
       {/* Breadcrumb */}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><a href="/">Trang chủ</a></li>
-          <li className="breadcrumb-item"><a href="/">Sản phẩm</a></li>
-          <li className="breadcrumb-item active" aria-current="page">Rượu vang đỏ</li>
+          <li className="breadcrumb-item"><Link to="/">Trang chủ</Link></li>
+          <li className="breadcrumb-item"><Link to="/products">Sản phẩm</Link></li>
+          <li className="breadcrumb-item active" aria-current="page">{product.name}</li>
         </ol>
       </nav>
       <div className="product-detail">
@@ -85,14 +99,16 @@ const ProductsDetail = ({ match }) => {
             <ProductsDetailName name={product.name} />
             <ProductsDetailPrice price={product.price} />
             <ProductsDetailReview />
+            <ProductsDetailChooseSize defaultValue={selectedSize} options={sizeOptions} handler={handleChangeSize} />
             <ProductsDetailChooseColor />
             <div className="clearfix" />
-            <ProductsDetailChooseSize />
             <ProductsDetailChooseQuantity
               value={quantity}
               decrement={handleQuantityDecrement}
               increment={handleQuantityIncrement}
-              onChange={handleChange} />
+              onChange={handleChange}
+              product={product}
+              addToCart={addToCart} />
             <ProductsDetailExpress />
             <ProductsDetailDesc desc={product.description} />
           </ProductsDetailInfo>
@@ -110,4 +126,12 @@ const ProductsDetail = ({ match }) => {
   )
 };
 
-export default withRouter(ProductsDetail);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    buyProduct: (product, quantity, size) => {
+      dispatch(actionBuyProduct(product, quantity, size))
+    }
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(ProductsDetail));

@@ -20,7 +20,7 @@ const Cart = ({ carts }) => {
   const renderCartFooter = (carts) => {
     let totalQuantity = sumBy(carts, 'quantity');
     let totalPrice = sumBy(carts, (cart) => {
-      return cart.product.price.new * cart.quantity;
+      return cart.product.price.new || cart.product.price * cart.quantity;
     });
     if (carts.length > 0) {
       return <CartFooter totalQuantity={totalQuantity} totalPrice={totalPrice} />
@@ -43,6 +43,7 @@ const Cart = ({ carts }) => {
             <tr>
               <th scope="col">Ảnh</th>
               <th scope="col">Tên sản phẩm</th>
+              <th scope="col">Kích cỡ</th>
               <th scope="col">Giá</th>
               <th scope="col">Số lượng</th>
               <th scope="col">Tổng số</th>
