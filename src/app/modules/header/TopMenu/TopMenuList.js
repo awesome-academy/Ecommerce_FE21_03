@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { firebaseApp } from '../../../../firebase';
 
 const createTopMenu = (user) => {
-  const menus = [
-    { to: '/cart', name: 'Giỏ hàng' },
-  ];
+  const menus = [];
   if (user.isLogin) {
     menus.push(
       { to: '/favorite', name: 'Danh sách ưa thích' },
@@ -37,7 +35,7 @@ const TopMenuItem = ({ children, path }) => {
   return <li><Link to={path}>{children}</Link></li>
 }
 
-const TopMenuList = ({ user }) => {
+const TopMenuList = ({ user, carts }) => {
   const handleLogout = () => {
     firebaseApp.auth().signOut();
   }
@@ -46,6 +44,7 @@ const TopMenuList = ({ user }) => {
     <ul className="top-menu__list list-unstyled">
       {user.isLogin && <li><Link to="/profile">{`Chào, ${user.info.firstName}`}</Link></li>}
       {user.info.isAdmin && <li><Link to="/admincp">Admincp</Link></li>}
+      <li><Link to="/cart">{`Giỏ hàng (${carts.length})`}</Link></li>
       {renderMenu(user)}
       {user.isLogin && <li><Link to="/" onClick={handleLogout}>Đăng xuất</Link></li>}
     </ul>
@@ -54,7 +53,8 @@ const TopMenuList = ({ user }) => {
 
 const mapStateToProps = state => {
   return {
-    user: state.usersReducers.user
+    user: state.usersReducers.user,
+    carts: state.cartsReducers.carts
   }
 }
 
