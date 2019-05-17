@@ -1,51 +1,54 @@
-import React from "react";
 import Loadable from 'react-loadable';
-
 import Loading from './modules/loading/Loading';
 
 const Home = Loadable({
   loader: () => import("./modules/home"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 const Blog = Loadable({
-  loader: () => import("./modules/blog/Blog"),
-  loading: () => <Loading />,
+  loader: () => import("./modules/blog"),
+  loading: Loading,
+});
+
+const BlogDetail = Loadable({
+  loader: () => import("./modules/blog-detail"),
+  loading: Loading,
 });
 
 const Introduction = Loadable({
   loader: () => import("./modules/introduction/Introduction"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 const Cart = Loadable({
   loader: () => import("./modules/carts"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 const Contact = Loadable({
   loader: () => import("./modules/contact/Contact"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 const Products = Loadable({
   loader: () => import("./modules/products/Products"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 const ProductsDetail = Loadable({
   loader: () => import("./modules/products/detail"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 const Login = Loadable({
   loader: () => import("./modules/login"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 const Register = Loadable({
   loader: () => import("./modules/register"),
-  loading: () => <Loading />,
+  loading: Loading,
 });
 
 export default [
@@ -56,6 +59,10 @@ export default [
   {
     path: "/blog",
     component: Blog
+  },
+  {
+    path: "/blog/:id",
+    component: BlogDetail
   },
   {
     path: "/introduction",

@@ -6,6 +6,7 @@
   "BLOG": "Blog",
   "CART": "Giỏ hàng",
   "CHOOSE_LANGUAGE": "Chọn ngôn ngữ",
+  "COMMENT": "Bình luận",
   "COMPARE": "So sánh",
   "CONTACT": "Liên hệ",
   "CONTINUE_BUYING": "Tiếp tục mua hàng",
@@ -20,6 +21,7 @@
       "SUB_TITLE": "Nếu bạn có một tài khoản, xin vui lòng đăng nhập.",
       "TITLE": "Khách hàng đăng nhập"
     },
+    "SUBMIT_COMMENT": "Gửi bình luận",
     "REGISTER_NEWS": "Đăng ký nhận bản tin"
   },
   "GO_BACK": "Quay lại",
@@ -38,7 +40,8 @@
     "DELETE_CART_CONFIRM": "Bạn có chắc chắn muốn xóa {{ name }} trong giỏ hàng không?",
     "LOGIN_SUCCESS": "Đăng nhập thành công",
     "LOGOUT_SUCCESS": "Đăng xuất thành công",
-    "REGISTER_SUCCESS": "Đăng ký thành công"
+    "REGISTER_SUCCESS": "Đăng ký thành công",
+    "SOMETHING_WENT_WRONG": "Đã xảy ra lỗi..."
   },
   "NO_PRODUCT_IN_CART": "Không có sản phẩm trong giỏ hàng!",
   "ORDER": "Đơn hàng",
