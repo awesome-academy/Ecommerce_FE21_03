@@ -3,30 +3,29 @@ import { Link, withRouter } from 'react-router-dom';
 import { Col } from 'reactstrap';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { firebaseApp } from '../../../firebase';
 import { ButtonSubmit } from '../shared/button';
 import { Label } from '../shared/form/Label';
+import * as ROUTES from '../../constants/routes';
 
-const FormLogin = ({ history }) => {
+const FormLogin = ({ history, firebase }) => {
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
-    firebaseApp.auth()
-      .signInWithEmailAndPassword(email, password)
+    firebase.doSignInWithEmailAndPassword(email, password)
       .then(() => {
         toast.success(t('NOTIFY.LOGIN_SUCCESS'));
-        history.push('/');
+        history.push(ROUTES.HOME);
       })
       .catch(e => {
-        toast.error(e.message)
+        toast.error(e.message);
       })
   }
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <form className="login" onSubmit={onSubmit}>
       <h4>{t('FORM.LOGIN.TITLE')}</h4>
       <p className="mb-5">{t('FORM.LOGIN.SUB_TITLE')}</p>
       <div className="form-group row">

@@ -1,5 +1,6 @@
 import Loadable from 'react-loadable';
 import Loading from './modules/loading/Loading';
+import * as ROUTES from './constants/routes';
 
 const Home = Loadable({
   loader: () => import("./modules/home"),
@@ -53,43 +54,43 @@ const Register = Loadable({
 
 export default [
   {
-    path: "/",
+    path: ROUTES.HOME,
     component: Home,
   },
   {
-    path: "/blog",
+    path: ROUTES.BLOG,
     component: Blog
   },
   {
-    path: "/blog/:id",
+    path: ROUTES.BLOG_DETAIL,
     component: BlogDetail
   },
   {
-    path: "/introduction",
+    path: ROUTES.INTRODUCTION,
     component: Introduction
   },
   {
-    path: "/cart",
+    path: ROUTES.CART,
     component: Cart
   },
   {
-    path: "/contact",
+    path: ROUTES.CONTACT,
     component: Contact
   },
   {
-    path: "/products",
+    path: ROUTES.PRODUCTS,
     component: Products
   },
   {
-    path: "/products/:id",
+    path: ROUTES.PRODUCTS_DETAIL,
     component: ProductsDetail
   },
   {
-    path: "/login",
+    path: ROUTES.LOGIN,
     component: Login
   },
   {
-    path: "/register",
+    path: ROUTES.REGISTER,
     component: Register
   }
 ]

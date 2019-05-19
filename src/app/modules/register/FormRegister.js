@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { firebaseApp, usersRef } from '../../../firebase';
 import { Label } from '../shared/form/Label';
 import { ButtonSubmit, ButtonGoBack } from '../shared/button';
+import * as ROUTES from '../../constants/routes';
 
-const FormRegister = ({ history }) => {
+const FormRegister = ({ history, firebase }) => {
   const { t } = useTranslation();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -15,23 +15,29 @@ const FormRegister = ({ history }) => {
   const [rePassword, setRePassword] = useState('');
   const [newsletter, setNewsletter] = useState(false);
 
-  const handleSubmit = e => {
+  const isInvalid = password !== rePassword
+    || password === ''
+    || email === ''
+    || firstName === ''
+    || lastName === '';
+
+  const onSubmit = e => {
     e.preventDefault();
-    if (password !== rePassword) {
-      return false;
-    };
-    firebaseApp.auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(data => {
+
+    firebase.doCreateUserWithEmailAndPassword(email, password)
+      .then(authUser => {
+        return firebase.user(authUser.user.uid)
+          .set({
+            email,
+            firstName,
+            isAdmin: false,
+            lastName,
+            newsletter,
+          })
+      })
+      .then(() => {
         toast.success(t('NOTIFY.REGISTER_SUCCESS'));
-        usersRef.child(data.user.uid).set({
-          uid: data.user.uid,
-          firstName,
-          lastName,
-          newsletter,
-          isAdmin: false
-        });
-        history.push('/');
+        history.push(ROUTES.HOME);
       })
       .catch(e => {
         toast.error(e.message)
@@ -39,7 +45,7 @@ const FormRegister = ({ history }) => {
   }
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
+    <form className="login" onSubmit={onSubmit}>
       <h5 className="mb-3 text-uppercase">{t('USER.PERSONAL_INFORMATION')}</h5>
       <div className="form-group row">
         <Label type="required">{t('USER.FIRST_NAME')}</Label>
@@ -78,10 +84,10 @@ const FormRegister = ({ history }) => {
         </div>
       </div>
       <div className="offset-sm-2">
-        <Link className="mx-1" to="/">{t('FORGOT_PASSWORD')}</Link>
+        <Link className="mx-1" to={ROUTES.PASSWORD_FORGET}>{t('FORGOT_PASSWORD')}</Link>
       </div>
       <div className="offset-sm-2 d-flex">
-        <ButtonSubmit>{t('REGISTER')}</ButtonSubmit>
+        <ButtonSubmit disabled={isInvalid} type="submit">{t('REGISTER')}</ButtonSubmit>
         <ButtonGoBack>{t('GO_BACK')}</ButtonGoBack>
       </div>
     </form>

@@ -2,40 +2,48 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
 import { withTranslation } from 'react-i18next';
-import { firebaseApp } from '../../../../firebase';
+import { AuthUserContext } from '../../../utils/session';
+import * as ROUTES from '../../../constants/routes';
+import SignOutButton from './SignOutButton';
 
 const TopMenuItem = ({ children, path }) => {
   return <li><Link to={path}>{children}</Link></li>
 }
 
-const TopMenuList = ({ user, carts, t }) => {
-  const handleLogout = () => {
-    firebaseApp.auth().signOut();
-    toast.success(t('NOTIFY.LOGOUT_SUCCESS'));
-  }
-
+const TopMenuList = ({ carts, t, user }) => {
   return (
     <ul className="top-menu__list list-unstyled">
-      {user.isLogin &&
-        <>
-          <TopMenuItem path="/profile">{t('WELCOME', { user: user.info.firstName })}</TopMenuItem>
-          <TopMenuItem path="/favorite">{t('FAVORITE_LIST')}</TopMenuItem>
-          <TopMenuItem path="/order">{t('ORDER')}</TopMenuItem>
-        </>
-      }
-      <TopMenuItem path="/cart">{t('CART')} ({carts.length})</TopMenuItem>
-      {user.isLogin || <>
-        <TopMenuItem path="/login">{t('LOGIN')}</TopMenuItem>
-        <TopMenuItem path="/register">{t('REGISTER')}</TopMenuItem>
-      </>
-      }
-      {user.info.isAdmin && <TopMenuItem path="/admincp">{t('ADMINCP')}</TopMenuItem>}
-      {user.isLogin && <li><Link to="/" onClick={handleLogout}>{t('LOGOUT')}</Link></li>}
+      <AuthUserContext.Consumer>
+        {authUser => {
+          if (authUser) {
+            return <TopMenuAuth t={t} carts={carts} authUser={authUser} user={user} />
+          } else {
+            return <TopMenuNonAuth t={t} carts={carts} />
+          }
+        }}
+      </AuthUserContext.Consumer>
     </ul>
   );
 }
+
+const TopMenuAuth = ({ carts, t, user }) => (
+  <>
+    <TopMenuItem path={ROUTES.PROFILE}>{t('WELCOME', { user: user.info.firstName })}</TopMenuItem>
+    <TopMenuItem path={ROUTES.CART}>{t('CART')} ({carts.length})</TopMenuItem>
+    <TopMenuItem path={ROUTES.FAVORITE}>{t('FAVORITE_LIST')}</TopMenuItem>
+    <TopMenuItem path={ROUTES.ORDER}>{t('ORDER')}</TopMenuItem>
+    <SignOutButton t={t} />
+  </>
+)
+
+const TopMenuNonAuth = ({ t, carts }) => (
+  <>
+    <TopMenuItem path={ROUTES.CART}>{t('CART')} ({carts.length})</TopMenuItem>
+    <TopMenuItem path={ROUTES.LOGIN}>{t('LOGIN')}</TopMenuItem>
+    <TopMenuItem path={ROUTES.REGISTER}>{t('REGISTER')}</TopMenuItem>
+  </>
+)
 
 const mapStateToProps = state => {
   return {

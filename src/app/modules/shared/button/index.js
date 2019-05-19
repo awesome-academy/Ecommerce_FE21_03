@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const ButtonSubmit = ({ children }) => {
-  return <button className="btn btn-primary btn-wine mx-1 my-3 text-uppercase" type="submit">{children}</button>
+export const ButtonSubmit = ({ children, disabled }) => {
+  return <button disabled={disabled} className="btn btn-primary btn-wine mx-1 my-3 text-uppercase" type="submit">{children}</button>
 };
 
 export const ButtonHeaderForm = ({ children, path = '/' }) => {
