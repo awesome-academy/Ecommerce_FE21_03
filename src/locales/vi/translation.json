@@ -36,6 +36,8 @@
   "NOTIFY": {
     "ADD_TO_CART_SUCCESS": "Đã thêm '{{ name }}' vào giỏ hàng",
     "CHOOSE_LANGUAGE_SUCCESS": "Chọn ngôn ngữ thành công",
+    "DELETE_ALL_PRODUCT_SUCCESS": "Đã xoá tất cả sản phẩm trong giỏ hàng.",
+    "DELETE_ALL_PRODUCT_CONFIRM": "Bạn có chắc chắn muốn xóa tất cả sản phẩm trong giỏ hàng không?",
     "DELETE_PRODUCT_SUCCESS": "Đã xoá {{ name }}!",
     "DELETE_CART_CONFIRM": "Bạn có chắc chắn muốn xóa {{ name }} trong giỏ hàng không?",
     "LOGIN_SUCCESS": "Đăng nhập thành công",

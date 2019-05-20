@@ -48,6 +48,9 @@ const carts = (state = initState, action) => {
       });
       LocalStorageUtils.setItem(LOCAL_STORAGE_KEY.CARTS, state);
       return [...state];
+    case types.DELETE_ALL_PRODUCT:
+      LocalStorageUtils.removeItem(LOCAL_STORAGE_KEY.CARTS);
+      return state = [];
     default:
       return state;
   }

@@ -36,6 +36,8 @@
   "NOTIFY": {
     "ADD_TO_CART_SUCCESS": "Add '{{ name }}' to cart success",
     "CHOOSE_LANGUAGE_SUCCESS": "Choose language success",
+    "DELETE_ALL_PRODUCT_SUCCESS": "Deleted all products in cart.",
+    "DELETE_ALL_PRODUCT_CONFIRM": "Are you sure you want to delete all products in cart?",
     "DELETE_PRODUCT_SUCCESS": "Deleted {{ name }}!",
     "DELETE_CART_CONFIRM": "Are you sure you wish to delete {{ name }} in cart?",
     "LOGIN_SUCCESS": "Login success",

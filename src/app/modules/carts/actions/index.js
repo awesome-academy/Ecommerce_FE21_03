@@ -23,3 +23,9 @@ export const actionDeleteProduct = (product) => {
     product,
   }
 }
+
+export const actionDeleteAllProduct = () => {
+  return {
+    type: types.DELETE_ALL_PRODUCT,
+  }
+}
