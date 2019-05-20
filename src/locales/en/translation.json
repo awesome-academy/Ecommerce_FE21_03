@@ -7,6 +7,7 @@
   "CART": "Cart",
   "CHOOSE_LANGUAGE": "Choose Language",
   "COMPARE": "Compare",
+  "COMMENT": "Comment",
   "CONTACT": "Contact",
   "CONTINUE_BUYING": "Continue Buying",
   "DELETE": "Delete",
@@ -20,6 +21,7 @@
       "SUB_TITLE": "If you have an account, please login.",
       "TITLE": "User "
     },
+    "SUBMIT_COMMENT": "Submit comment",
     "REGISTER_NEWS": "Register newsletter"
   },
   "GO_BACK": "Go back",
@@ -38,7 +40,8 @@
     "DELETE_CART_CONFIRM": "Are you sure you wish to delete {{ name }} in cart?",
     "LOGIN_SUCCESS": "Login success",
     "LOGOUT_SUCCESS": "Logout ",
-    "REGISTER_SUCCESS": "Register success"
+    "REGISTER_SUCCESS": "Register success",
+    "SOMETHING_WENT_WRONG": "Something went wrong..."
   },
   "NO_PRODUCT_IN_CART": "No product in cart",
   "ORDER": "Order",
