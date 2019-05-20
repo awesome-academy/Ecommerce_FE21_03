@@ -1,11 +1,8 @@
-/**
- * TODO: Add breadcrumb component after done task #11527
- * https://edu-redmine.sun-asterisk.vn/issues/11527
- */
-
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useTranslation } from "react-i18next";
+import { toast } from 'react-toastify';
 import { actionBuyProduct } from '../../carts/actions';
 import { productsRef } from '../../../../firebase';
 import ProductsDetailLeft from './Left';
@@ -27,6 +24,7 @@ const ProductsDetailInfo = ({ children }) => <div className="product-detail__inf
 let productId = null;
 
 const ProductsDetail = ({ match, buyProduct }) => {
+  const { t } = useTranslation();
   const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [sizeOptions, setSizeOptions] = useState([]);
@@ -54,6 +52,7 @@ const ProductsDetail = ({ match, buyProduct }) => {
     const newQuantity = quantity;
     const newSize = selectedSize;
     buyProduct(product, newQuantity, newSize);
+    toast.success(t(`NOTIFY.ADD_TO_CART_SUCCESS`, { name: `${product.name}` }));
   }
 
   productId = match.params.id;

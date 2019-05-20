@@ -1,15 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-function Breadcrumb() {
-    return (
-        <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                <li className="breadcrumb-item"><a href="/">Sản phẩm</a></li>
-                <li className="breadcrumb-item active" aria-current="page">Rượu vang đỏ</li>
-            </ol>
-        </nav>
-    )
+const Breadcrumb = () => {
+  const { t } = useTranslation();
+
+  return (
+    <nav aria-label="breadcrumb">
+      <ol className="breadcrumb">
+        <li className="breadcrumb-item"><Link to="/">{t('HOMEPAGE')}</Link></li>
+        <li className="breadcrumb-item active" aria-current="page">{t('INTRODUCE')}</li>
+      </ol>
+    </nav>
+  )
 }
 
 export default Breadcrumb

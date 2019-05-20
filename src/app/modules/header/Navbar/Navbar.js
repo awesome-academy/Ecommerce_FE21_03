@@ -10,10 +10,12 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import { useTranslation } from "react-i18next";
 import NavbarCartMobile from './NavbarCartMobile';
 import NavbarDropdown from './NavbarDropdown';
 
 function HeaderNavbar() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -31,18 +33,18 @@ function HeaderNavbar() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="navbar-nav ml-auto" navbar>
             <NavItem>
-              <NavLink className="nav-link-menu" tag={RRNavLink} to="/" title="Trang chủ">Trang chủ</NavLink>
+              <NavLink className="nav-link-menu" tag={RRNavLink} to="/" title={t('HOMEPAGE')}>{t('HOMEPAGE')}</NavLink>
             </NavItem>
             <NavbarDropdown title="Rượu Đỏ" />
             <NavbarDropdown title="Rượu Trắng" />
             <NavItem>
-              <NavLink className="nav-link-menu" tag={RRNavLink} to="/introduction" title="Thông tin">Thông tin</NavLink>
+              <NavLink className="nav-link-menu" tag={RRNavLink} to="/introduction" title={t('INTRODUCTION')}>{t('INTRODUCTION')}</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link-menu" tag={RRNavLink} to="/blog" title="Blog">Blog</NavLink>
+              <NavLink className="nav-link-menu" tag={RRNavLink} to="/blog" title={t('BLOG')}>{t('BLOG')}</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link-menu" tag={RRNavLink} to="/contact" title="Liên hệ">Liên hệ</NavLink>
+              <NavLink className="nav-link-menu" tag={RRNavLink} to="/contact" title={t('CONTACT')}>{t('CONTACT')}</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
