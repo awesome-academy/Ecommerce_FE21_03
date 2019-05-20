@@ -38,7 +38,7 @@ const Products = Loadable({
 });
 
 const ProductsDetail = Loadable({
-  loader: () => import("./modules/products/detail"),
+  loader: () => import("./modules/product-detail"),
   loading: Loading,
 });
 

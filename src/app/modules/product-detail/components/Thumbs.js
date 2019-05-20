@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 const ThumbImageItem = ({ image }) => {
   return (
-    <a className="thumbs__image" href="/">
-      <span><img src={image} alt="title" /></span>
-    </a>
+    <Link className="thumbs__image" to="/">
+      <span><img src={image} alt="" /></span>
+    </Link>
   )
 }
 
@@ -24,7 +24,7 @@ const ProductsDetailThumbs = ({ imageUrl, images = [] }) => {
       </div>
       <div className="big">
         <span className="big-image">
-          <img src={imageUrl} alt="title" />
+          <img src={imageUrl} alt="" />
         </span>
       </div>
     </>
