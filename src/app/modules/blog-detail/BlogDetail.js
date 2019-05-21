@@ -1,74 +1,76 @@
-import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Container } from 'reactstrap';
 import Loadable from 'react-loadable';
-import Loading from '../loading/Loading';
 import { useTranslation } from 'react-i18next';
-import { blogRef } from '../../../firebase';
 import { HeaderTitleMedium } from '../shared/header-title';
+import Loading from '../loading/Loading';
 import BlogDetailRight from './components/Right';
 import BlogDetailContent from './components/Content';
-
-let blogId = null;
+import { withFirebase } from '../firebase';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 const BlogDetailComment = Loadable({
   loader: () => import('./components/Comment'),
   loading: Loading,
 });
 
-const useBlogPostApi = (initData) => {
-  const [data, setData] = useState(initData);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  const fetchData = () => {
-    setIsError(false);
-    setIsLoading(true);
-
-    blogRef
-      .child(blogId)
-      .once('value')
-      .then(blog => {
-        const { content, title, description, image_url } = blog.val();
-        let blogData = {
-          id: blog.key,
-          content,
-          title,
-          description,
-          image_url
-        }
-        setData(blogData);
-        setIsLoading(false);
-      }).catch(() => {
-        setIsError(true)
-      });
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return { data, isLoading, isError };
+const BlogPage = () => {
+  return (
+    <Container>
+      <HeaderTitleMedium title="Blog" />
+      <div className="blog">
+        <BlogDetailRight>
+          <Blog />
+          <BlogDetailComment />
+        </BlogDetailRight>
+      </div>
+    </Container>
+  )
 }
 
-const BlogDetail = ({ match }) => {
+const BlogHookBase = ({ firebase, match }) => {
+  const blogId = match.params.id;
   const { t } = useTranslation();
-  const { data, isLoading, isError } = useBlogPostApi([]);
-  blogId = match.params.id;
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    firebase
+      .blog(blogId)
+      .orderByChild('createdAt')
+      .once('value')
+      .then(snapshot => {
+        const blogObject = snapshot.val();
+        if (blogObject) {
+          setData(blogObject);
+          setLoading(false);
+        } else {
+          setData(null);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        setError(true);
+      })
+  }, [firebase, blogId]);
 
   const renderError = () => <div>{t('NOTIFY.SOMETHING_WENT_WRONG')}</div>
 
   return (
-    <div className="container">
-      <HeaderTitleMedium title="Blog" />
-      <div className="blog">
-        <BlogDetailRight>
-          {isError && renderError()}
-          {isLoading ? <Loading /> : <BlogDetailContent item={data} />}
-          <BlogDetailComment />
-        </BlogDetailRight>
-      </div>
-    </div>
+    <>
+      {loading && <Loading />}
+      {error && renderError()}
+      {data ? <BlogDetailContent item={data} /> : null}
+    </>
   )
 }
 
-export default withRouter(BlogDetail);
+const Blog = compose(
+  withRouter,
+  withFirebase
+)(BlogHookBase);
+
+export default BlogPage;

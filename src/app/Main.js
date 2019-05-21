@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from "react-router-dom";
 import Home from './modules/home';
 import App from './App';
+import { withAuthentication } from '../app/utils/session';
 
 function Main() {
   return (
@@ -12,4 +13,4 @@ function Main() {
   )
 }
 
-export default Main;
+export default withAuthentication(Main);

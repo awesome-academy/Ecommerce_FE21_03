@@ -1,0 +1,15 @@
+export const ADMINCP = '/admincp';
+export const BLOG = '/blog';
+export const BLOG_DETAIL = '/blog/:id';
+export const CART = '/cart';
+export const CONTACT = '/contact';
+export const FAVORITE = '/favorite';
+export const HOME = '/';
+export const INTRODUCTION = '/introduction';
+export const LOGIN = '/login';
+export const ORDER = '/order';
+export const PASSWORD_FORGET = '/password-forget';
+export const PRODUCTS = '/products';
+export const PRODUCTS_DETAIL = '/products/:id';
+export const PROFILE = '/profile';
+export const REGISTER = '/register';
