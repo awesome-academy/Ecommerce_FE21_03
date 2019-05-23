@@ -1,4 +1,3 @@
-export const ADMINCP = '/admincp';
 export const BLOG = '/blog';
 export const BLOG_DETAIL = '/blog/:id';
 export const CART = '/cart';
@@ -13,3 +12,10 @@ export const PRODUCTS = '/products';
 export const PRODUCTS_DETAIL = '/products/:id';
 export const PROFILE = '/profile';
 export const REGISTER = '/register';
+
+export const ADMINCP = '/admincp';
+export const ADMINCP_DASHBOARD = '/admincp/dashboard';
+export const ADMINCP_USERS = '/admincp/users';
+export const ADMINCP_USERS_DETAIL = '/admincp/users/:id';
+export const ADMINCP_USERS_ALL = '/admincp/users/all';
+export const ADMINCP_USERS_GROUPS = '/admincp/users/groups';
