@@ -16,6 +16,6 @@ export const REGISTER = '/register';
 export const ADMINCP = '/admincp';
 export const ADMINCP_DASHBOARD = '/admincp/dashboard';
 export const ADMINCP_USERS = '/admincp/users';
-export const ADMINCP_USERS_DETAIL = '/admincp/users/:id';
+export const ADMINCP_USERS_DETAIL = '/admincp/users/u/:id';
 export const ADMINCP_USERS_ALL = '/admincp/users/all';
 export const ADMINCP_USERS_GROUPS = '/admincp/users/groups';

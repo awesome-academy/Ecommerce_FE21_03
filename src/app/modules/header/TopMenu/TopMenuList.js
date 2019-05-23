@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import { AuthUserContext } from '../../../utils/session';
 import * as ROUTES from '../../../constants/routes';
+import * as ROLES from '../../../constants/roles';
 import SignOutButton from './SignOutButton';
 
 const TopMenuItem = ({ children, path }) => {
@@ -27,12 +28,15 @@ const TopMenuList = ({ carts, t, user }) => {
   );
 }
 
-const TopMenuAuth = ({ carts, t, user }) => (
+const TopMenuAuth = ({ authUser, carts, t, user }) => (
   <>
     <TopMenuItem path={ROUTES.PROFILE}>{t('WELCOME', { user: user.info.firstName })}</TopMenuItem>
     <TopMenuItem path={ROUTES.CART}>{t('CART')} ({carts.length})</TopMenuItem>
     <TopMenuItem path={ROUTES.FAVORITE}>{t('FAVORITE_LIST')}</TopMenuItem>
     <TopMenuItem path={ROUTES.ORDER}>{t('ORDER')}</TopMenuItem>
+    {authUser.roles[ROLES.ADMIN] != null && (
+      <TopMenuItem path={ROUTES.ADMINCP}>{t('ADMINCP')}</TopMenuItem>
+    )}
     <SignOutButton t={t} />
   </>
 )

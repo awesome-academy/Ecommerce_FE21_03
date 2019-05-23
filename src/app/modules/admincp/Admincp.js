@@ -5,7 +5,9 @@ import { Layout } from 'antd';
 import Loadable from 'react-loadable';
 import './styles/Admincp.scss';
 import { withAuthorization } from '../../utils/session';
+import { withFirebase } from '../firebase';
 import Routes from "./Routes";
+import * as ROLES from '../../constants/roles';
 
 const Loading = () => <>Loading...</>
 
@@ -50,8 +52,10 @@ const AdmincpPage = () => {
   )
 };
 
-const isAdmin = authUser => authUser != null;
+const condition = authUser =>
+  authUser && authUser.roles[ROLES.ADMIN] != null;
 
 export default compose(
-  withAuthorization(isAdmin)
+  withAuthorization(condition),
+  withFirebase,
 )(AdmincpPage);

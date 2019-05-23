@@ -12,13 +12,13 @@ const UsersPage = Loadable({
   loading: Loading,
 });
 
-const UsersAllPage = Loadable({
-  loader: () => import("./pages/users/all"),
+const UsersDetailPage = Loadable({
+  loader: () => import("./pages/user-detail"),
   loading: Loading,
 });
 
 const UsersGroupsPage = Loadable({
-  loader: () => import("./pages/users/groups"),
+  loader: () => import("./pages/user-groups"),
   loading: Loading,
 });
 
@@ -32,8 +32,8 @@ export default [
     component: UsersPage,
   },
   {
-    path: ROUTES.ADMINCP_USERS_ALL,
-    component: UsersAllPage,
+    path: ROUTES.ADMINCP_USERS_DETAIL,
+    component: UsersDetailPage,
   },
   {
     path: ROUTES.ADMINCP_USERS_GROUPS,

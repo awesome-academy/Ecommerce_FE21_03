@@ -6,15 +6,16 @@ import { withFirebase } from '../../modules/firebase';
 import * as ROUTES from '../../constants/routes';
 
 const withAuthorization = condition => Component => {
-  class withAuthorization extends React.Component {
+  class WithAuthorization extends React.Component {
     componentDidMount() {
-      this.listener = this.props.firebase.auth.onAuthStateChanged(
+      this.listener = this.props.firebase.onAuthUserListener(
         authUser => {
           if (!condition(authUser)) {
             this.props.history.push(ROUTES.LOGIN);
           }
-        }
-      )
+        },
+        () => this.props.history.push(ROUTES.LOGIN)
+      );
     }
 
     componentWillUnmount() {
@@ -28,7 +29,7 @@ const withAuthorization = condition => Component => {
   return compose(
     withRouter,
     withFirebase
-  )(withAuthorization);
+  )(WithAuthorization);
 };
 
 export default withAuthorization;

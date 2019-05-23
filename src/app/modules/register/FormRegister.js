@@ -23,16 +23,19 @@ const FormRegister = ({ history, firebase }) => {
 
   const onSubmit = e => {
     e.preventDefault();
+    const roles = {};
 
     firebase.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         return firebase.user(authUser.user.uid)
           .set({
+            uid: authUser.user.uid,
             email,
             firstName,
-            isAdmin: false,
             lastName,
             newsletter,
+            roles,
+            createdAt: firebase.serverValue.TIMESTAMP,
           })
       })
       .then(() => {

@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Table } from 'antd';
 
-import * as ROUTES from '../../../../../../constants/routes';
+import * as ROUTES from '../../../../../constants/routes';
 
-const List = ({ users }) => {
+const List = ({ users, loading }) => {
+
   const columns = [
     {
       title: 'STT',
@@ -13,12 +14,12 @@ const List = ({ users }) => {
     {
       title: 'First Name',
       dataIndex: 'firstName',
-      render: (text, record) => <Link to={`${ROUTES.ADMINCP_USERS}/${record.uid}`}>{text}</Link>,
+      render: (text, record) => <Link to={`${ROUTES.ADMINCP_USERS}/u/${record.uid}`}>{text}</Link>,
     },
     {
       title: 'Last Name',
       dataIndex: 'lastName',
-      render: (text, record) => <Link to={`${ROUTES.ADMINCP_USERS}/${record.uid}`}>{text}</Link>,
+      render: (text, record) => <Link to={`${ROUTES.ADMINCP_USERS}/u/${record.uid}`}>{text}</Link>,
     },
     {
       title: 'Email',
@@ -47,7 +48,7 @@ const List = ({ users }) => {
   };
 
   return (
-    <Table rowSelection={rowSelection} columns={columns} dataSource={users} />
+    <Table loading={loading} rowSelection={rowSelection} columns={columns} dataSource={users} />
   )
 }
 export default List;
