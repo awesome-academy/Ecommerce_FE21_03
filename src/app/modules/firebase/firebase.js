@@ -42,6 +42,13 @@ class Firebase {
   blog = id => this.db.ref(`blog/${id}`)
 
   blogs = () => this.db.ref('blog');
+
+  /**
+   * Product API
+   */
+  product = id => this.db.ref(`products/${id}`)
+
+  products = () => this.db.ref('products');
 }
 
 export default Firebase;
