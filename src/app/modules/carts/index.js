@@ -1,13 +1,39 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { sumBy } from 'lodash';
+import { toast } from 'react-toastify';
+import Loadable from 'react-loadable';
+import { actionDeleteAllProduct } from './actions';
 import { HeaderTitleMedium } from '../shared/header-title';
-import CartItem from './components/Item';
-import CartFooter from './components/Footer';
 import { useTranslation } from 'react-i18next';
 
-const Cart = ({ carts }) => {
+const Loading = () => <tr><td>Loading...</td></tr>
+
+const CartItem = Loadable({
+  loader: () => import('./components/Item'),
+  loading: Loading,
+  render(loaded, props) {
+    let CartItem = loaded.default;
+    return <CartItem {...props} />
+  }
+});
+
+const CartFooter = Loadable({
+  loader: () => import('./components/Footer'),
+  loading: Loading,
+  render(loaded, props) {
+    let CartFooter = loaded.default;
+    return <CartFooter {...props} />
+  }
+});
+
+const NoCart = Loadable({
+  loader: () => import('./components/NoCart'),
+  loading: Loading
+});
+
+const Cart = ({ carts, deleteAllProduct }) => {
   const { t } = useTranslation();
   const renderCartItem = (carts) => {
     if (carts.length > 0) {
@@ -15,7 +41,7 @@ const Cart = ({ carts }) => {
         return <CartItem key={index} cart={cart} />
       });
     }
-    return <tr><td colSpan={7}>{t('NO_PRODUCT_IN_CART')}</td></tr>
+    return <NoCart />
   }
 
   const renderCartFooter = (carts) => {
@@ -27,6 +53,14 @@ const Cart = ({ carts }) => {
       return <CartFooter totalQuantity={totalQuantity} totalPrice={totalPrice} />
     }
     return null;
+  }
+
+  const onDeleteAll = () => {
+    const confirm = window.confirm(t('NOTIFY.DELETE_ALL_PRODUCT_CONFIRM'));
+    if (confirm) {
+      deleteAllProduct();
+      toast.error(t('NOTIFY.DELETE_ALL_PRODUCT_SUCCESS'));
+    }
   }
 
   return (
@@ -58,8 +92,9 @@ const Cart = ({ carts }) => {
         </table>
         <div className="d-flex justify-content-end">
           <Link className="btn btn-wine" to="/products">{t('CONTINUE_BUYING')}</Link>
-          <a className="btn btn-wine mx-3" href="/">{t('DELETE')}</a>
-          <a className="btn btn-wine" href="/">{t('UPDATE')}</a></div>
+          <button onClick={() => onDeleteAll()} className="btn btn-wine mx-3" >{t('DELETE')}</button>
+          <a className="btn btn-wine" href="/">{t('UPDATE')}</a>
+        </div>
       </section>
     </div>
   )
@@ -71,4 +106,12 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Cart);
+const mapDispathToProps = (dispatch, ownProps) => {
+  return {
+    deleteAllProduct: () => {
+      dispatch(actionDeleteAllProduct());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispathToProps)(Cart);
