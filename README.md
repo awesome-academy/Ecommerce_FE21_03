@@ -10,7 +10,7 @@
 View website demo at: <a target="_blank" href="https://sun-ecommerce.ineo.vn/">sun-ecommerce.ineo.vn</a>
 <br>
 <br>
-[![SCREENSHOT](https://i.imgur.com/mdTsIIs.jpg)]()
+![SCREENSHOT](https://i.imgur.com/mdTsIIs.jpg)
 
 ## How To Use
 
@@ -34,6 +34,7 @@ $ yarn start
 
 This project uses the following open source packages:
 
+- [Ant Design](https://ant.design)
 - [Axios](https://github.com/axios/axios)
 - [Bootstrap](https://getbootstrap.com/)
 - [Fortawesome](https://github.com/FortAwesome/react-fontawesome)
