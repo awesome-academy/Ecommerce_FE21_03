@@ -1,5 +1,6 @@
 export const LOCAL_STORAGE_KEY = {
   CARTS: "app_carts",
+  AUTH_USER: "app_authUser",
 };
 
 export default class LocalStorageUtils {

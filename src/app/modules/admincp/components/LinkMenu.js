@@ -30,10 +30,10 @@ const LinkMenu = withRouter(props => {
           </span>
         }
       >
-        <Menu.Item key={ROUTES.ADMINCP_USERS_ALL}>
-          <Link to={ROUTES.ADMINCP_USERS_ALL}>
+        <Menu.Item key={ROUTES.ADMINCP_USERS}>
+          <Link to={ROUTES.ADMINCP_USERS}>
             All Users
-                  </Link>
+          </Link>
         </Menu.Item>
         <Menu.Item key={ROUTES.ADMINCP_USERS_GROUPS}>
           <Link to={ROUTES.ADMINCP_USERS_GROUPS}>

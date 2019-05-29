@@ -1,6 +1,8 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import store from '../../../store';
+import { actionLogin, actionLogout } from '../users/actions';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -18,6 +20,12 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.database();
+
+    /**
+     * Helper
+     */
+
+    this.serverValue = app.database.ServerValue;
   }
 
   /**
@@ -28,6 +36,58 @@ class Firebase {
   doSignInWithEmailAndPassword = (email, password) => this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => this.auth.signOut();
+
+  /**
+   * Merge Auth and DB User API
+   */
+
+  onAuthUserListener = (next, fallback) =>
+    this.auth.onAuthStateChanged(authUser => {
+      if (authUser) {
+        this.user(authUser.uid)
+          .once('value')
+          .then(snapshot => {
+            const dbUser = snapshot.val();
+
+            // default empty roles
+            if (!dbUser.roles) {
+              dbUser.roles = {};
+            }
+
+            // merge auth and db user
+            authUser = {
+              uid: authUser.uid,
+              email: authUser.email,
+              ...dbUser,
+            };
+
+            // Push user info to store
+            store.dispatch(actionLogin(authUser));
+
+            next(authUser);
+          });
+      } else {
+        fallback();
+        store.dispatch(actionLogout());
+      }
+    });
+
+
+  /**
+   * Dashboard
+   */
+
+  getTotalUsers = () =>
+    this.db
+      .ref('users')
+      .once('value')
+      .then(snapshot => snapshot.numChildren());
+
+  getTotalProducts = () =>
+    this.db
+      .ref('products')
+      .once('value')
+      .then(snapshot => snapshot.numChildren());
 
   /**
    * Users API
