@@ -43,7 +43,8 @@
     "LOGIN_SUCCESS": "Login success",
     "LOGOUT_SUCCESS": "Logout ",
     "REGISTER_SUCCESS": "Register success",
-    "SOMETHING_WENT_WRONG": "Something went wrong..."
+    "SOMETHING_WENT_WRONG": "Something went wrong...",
+    "QUANTITY_CANNOT_BE_LESS_THAN_ONE": "Quantity cannot be less than one"
   },
   "NO_PRODUCT_IN_CART": "No product in cart",
   "ORDER": "Order",

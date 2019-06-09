@@ -22,6 +22,7 @@ import ProductsDetailPrice from './components/Price';
 import ProductsDetailReview from './components/Review';
 import ProductsDetailRight from './components/Right';
 import ProductsDetailThumbs from './components/Thumbs';
+import useChooseQuantity from '../shared/choose-quantity';
 
 const ProductDetailPage = () => {
   return (
@@ -38,10 +39,10 @@ const ProductDetailHookBase = ({ firebase, match, buyProduct }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [quantity, setQuantity] = useState(1);
   const [sizeOptions, setSizeOptions] = useState([]);
   const [selectedSize, setSelectedSize] = useState({ label: "Loại nhỏ", value: 'small' });
   const [error, setError] = useState(false);
+  const [count, onIncrease, onDecrease, onCountChange] = useChooseQuantity();
 
   useEffect(() => {
     setLoading(true);
@@ -80,25 +81,9 @@ const ProductDetailHookBase = ({ firebase, match, buyProduct }) => {
     setSelectedSize(selectedOption);
   }
 
-  const handleChange = newValue => {
-    setQuantity(newValue);
-  }
-
-  const handleQuantityIncrement = () => {
-    return setQuantity(prevQuantity => prevQuantity + 1);
-  }
-
-  const handleQuantityDecrement = () => {
-    if (quantity === 1) {
-      return setQuantity(1);
-    }
-    return setQuantity(prevQuantity => prevQuantity - 1);
-  }
-
   const addToCart = (product) => {
-    const newQuantity = quantity;
     const newSize = selectedSize;
-    buyProduct(data, newQuantity, newSize);
+    buyProduct(data, count, newSize);
     toast.success(t(`NOTIFY.ADD_TO_CART_SUCCESS`, { name: `${data.name}` }));
   }
 
@@ -120,12 +105,13 @@ const ProductDetailHookBase = ({ firebase, match, buyProduct }) => {
           <ProductsDetailChooseColor />
           <div className="clearfix" />
           <ProductsDetailChooseQuantity
-            value={quantity}
-            decrement={handleQuantityDecrement}
-            increment={handleQuantityIncrement}
-            onChange={handleChange}
+            addToCart={addToCart}
+            count={count}
+            onCountChange={onCountChange}
+            onDecrease={onDecrease}
+            onIncrease={onIncrease}
             product={data}
-            addToCart={addToCart} />
+          />
           <ProductsDetailExpress />
           <ProductsDetailDesc desc={data.desc} />
         </ProductsDetailInfo>
