@@ -43,7 +43,8 @@
     "LOGIN_SUCCESS": "Đăng nhập thành công",
     "LOGOUT_SUCCESS": "Đăng xuất thành công",
     "REGISTER_SUCCESS": "Đăng ký thành công",
-    "SOMETHING_WENT_WRONG": "Đã xảy ra lỗi..."
+    "SOMETHING_WENT_WRONG": "Đã xảy ra lỗi...",
+    "QUANTITY_CANNOT_BE_LESS_THAN_ONE": "Số lượng không thể nhỏ hơn một"
   },
   "NO_PRODUCT_IN_CART": "Không có sản phẩm trong giỏ hàng!",
   "ORDER": "Đơn hàng",
